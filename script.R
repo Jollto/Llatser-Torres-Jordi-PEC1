@@ -19,7 +19,12 @@ se <- SummarizedExperiment(
   rowData = row_data,
   colData = col_data
 )
-save(se, file = "human_cachexia_se.Rda")
+
+save(se, file = "human_cachexia_se.Rda") # Guardar l'objecte de forma binària
+
+# Exportar dades del SummarizedExperiment
+write.csv(as.data.frame(assays(se)$counts), "human_cachexia_data.csv", row.names = FALSE)
+
 
 # Exploració de les dades
 table(rowData(se)$'Muscle.loss')  # Comptar quants pacients són cachectics o no
