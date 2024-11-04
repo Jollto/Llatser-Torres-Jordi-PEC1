@@ -4,8 +4,6 @@ if (!require("BiocManager", quietly = TRUE)){
 }
 
 library(SummarizedExperiment)
-library(GEOquery)
-
 
 # Llegir les dades
 dades <- read.csv("human_cachexia.csv")
@@ -21,9 +19,9 @@ se <- SummarizedExperiment(
   rowData = row_data,
   colData = col_data
 )
-
+save(se, file = "human_cachexia_se.Rda")
 
 # Exploració de les dades
-summary(rowData(se)$`Muscle.loss`)  # Comptar quants pacients són cachectics o no
+table(rowData(se)$'Muscle.loss')  # Comptar quants pacients són cachectics o no
 summary(assays(se)$counts)          # Resum de les concentracions de compostos
 
